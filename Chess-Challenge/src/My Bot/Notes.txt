@@ -1,0 +1,16 @@
+﻿
+______PieceTypes______
+Index |  Name  | Value
+0     | None   | 0
+1     | Pawn   | 1
+2     | Knight | 3
+3     | Bishop | 3
+4     | Rook   | 5
+5     | Queen  | 9
+6     | King   | 100
+
+Versions stats:
+* Initial Commit (moves[0]): +0, =21, -111
+* First capture + promote: +1, =26, -72
+* Weighted composite score (rank, promotion, and capture): +4, =112, -18
+* Weighted composite scores with official piece values: 
