@@ -13,4 +13,18 @@ Versions stats:
 * Initial Commit (moves[0]): +0, =21, -111
 * First capture + promote: +1, =26, -72
 * Weighted composite score (rank, promotion, and capture): +4, =112, -18
-* Weighted composite scores with official piece values: 
+* Weighted composite scores with official piece values: +8, =272, -19
+
+GetLegalMoves() seems to check the higher value pieces first
+
+IDEAS:
+* For both start and target squares, evaluate the following:
+  - Is this protected?
+	+ By how many pieces?
+	+ By what pieces?
+  - Is there an opponent piece that threatens this square?
+	+ Consider if this could be a trade
+	+ What is the power or point difference between my protecting/attacking pieces and their threatening pieces? (Back and forth trading)
+  - What value is the piece I'm moving?
+	+ Only really useful in combination with other info
+  - How many opponents does this piece threaten (if I can figure that out)?
