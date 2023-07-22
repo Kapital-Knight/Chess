@@ -14,6 +14,9 @@ Versions stats:
 * First capture + promote: +1, =26, -72
 * Weighted composite score (rank, promotion, and capture): +4, =112, -18
 * Weighted composite scores with official piece values: +8, =272, -19
+* Avoids threats, semi-normalized the weights by value: +25, =111, -0
+* Avoids threats, normalized the weights by value: +120~, =480~, -5~
+* Randomly select from the best tied moves: +34, =67, -0
 
 GetLegalMoves() seems to check the higher value pieces first
 

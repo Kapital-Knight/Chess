@@ -11,18 +11,18 @@ public class MyBot : IChessBot
      * Weighted composite score (rank, promotion, and capture): +4, =112, -18
      */
 
+    Random random = new Random();
     // Piece values. None 0, Pawn 1, Knight 3, Bishop 3, Rook 5, Queen 9, King 100
     int[] pieceValues = { 0, 1, 3, 3, 5, 9, 100 };
     public Move Think(Board board, Timer timer)
     {
         Move[] moves = board.GetLegalMoves();
 
-        Move bestMove = moves[0];
+        List<Move> bestMoves = new List<Move>();
         int bestMoveScore = int.MinValue;
-        
 
-        for (int i = 0; i < moves.Length; ++i)
-        {
+
+        for (int i = 0; i < moves.Length; ++i) {
             Move move = moves[i];
 
             // range: 1 - 9
@@ -40,17 +40,20 @@ public class MyBot : IChessBot
 
             int moveScore
                 = 5 * pawnRankGain // 0 - 10
-                + 45 * promotionGain // 0 - 360        <-- Change coefficient to 40, I think
+                + 40 * promotionGain // 0 - 320
                 + 40 * captureGain // 0 - 360
                 - 40 * movePieceValue * targetIsThreatened; // 0 - 360
-            if (moveScore >= bestMoveScore)
-            {
+            if (moveScore > bestMoveScore) {
                 bestMoveScore = moveScore;
-                bestMove = moves[i];
+                bestMoves.Clear();
+                bestMoves.Add(move);
+            }
+            else if (moveScore == bestMoveScore) {
+                bestMoves.Add(move);
             }
         }
-
-        return bestMove;
+        Console.WriteLine(bestMoves.Count);
+        return bestMoves[random.Next(0, bestMoves.Count)];
     }
 
     //private Dictionary<Square, List<Move>> GenerateMovesToSqaures(Move[] moves)
